@@ -17,7 +17,7 @@ public class CustomerController {
     private CustomerService customerService;
 
     @PostMapping
-    public ResponseEntity<String> executeCreateCustomer(@RequestBody @Valid CustomerDto customerDto){
+    public ResponseEntity<String> executeCreateCustomer(@Valid @RequestBody CustomerDto customerDto){
         return ResponseEntity.ok(customerService.executeSaveCustomer(customerDto));
     }
 
@@ -32,7 +32,7 @@ public class CustomerController {
     }
 
     @PutMapping
-    public ResponseEntity<String> executeUpdateCustomer(@RequestBody @Valid CustomerDto customerDto){
+    public ResponseEntity<String> executeUpdateCustomer(@Valid @RequestBody CustomerDto customerDto){
         customerService.executeSaveCustomer(customerDto);
         return ResponseEntity.accepted().build();
     }

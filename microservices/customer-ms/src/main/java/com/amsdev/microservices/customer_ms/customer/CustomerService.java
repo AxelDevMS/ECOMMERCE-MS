@@ -1,5 +1,6 @@
 package com.amsdev.microservices.customer_ms.customer;
 
+import com.amsdev.microservices.customer_ms.exceptions.CustomerNotFoundException;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,9 @@ public class CustomerService {
     public CustomerDto executeGetCustomer(String customerId) {
         return customerRepository.findById(customerId)
                 .map(mapper::toCustomerResponse)
-                .orElseThrow();
+                .orElseThrow(() -> new CustomerNotFoundException(
+                        String.format("Customer with id %s not found", customerId))
+                );
     }
 
     public List<CustomerDto> executeGetListCustomer() {
@@ -35,7 +38,9 @@ public class CustomerService {
     }
 
     public void executeDeleteCustomer(String customerId) {
-        customerRepository.findById(customerId).orElseThrow();
+        customerRepository.findById(customerId).orElseThrow(() -> new CustomerNotFoundException(
+                String.format("Customer with id %s not found", customerId))
+        );
         customerRepository.deleteById(customerId);
     }
 }

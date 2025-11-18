@@ -15,14 +15,15 @@
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.42/lombok-1.18.42.jar" />
         </processorPath>
         <module name="config-server" />
+        <module name="customer-ms" />
         <module name="discovery-server" />
-        <module name="microservices" />
       </profile>
     </annotationProcessing>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="config-server" options="-parameters" />
+      <module name="customer-ms" options="-parameters" />
       <module name="discovery-server" options="-parameters" />
       <module name="ecommerce" options="-parameters" />
       <module name="microservices" options="-parameters" />
